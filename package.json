@@ -1,0 +1,44 @@
+{
+  "name": "smartboard",
+  "private": true,
+  "version": "0.0.0",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@8base/auth": "^1.6.2",
+    "@babel/core": "^7.21.3",
+    "@emotion/react": "^11.10.6",
+    "@mantine/core": "^6.0.2",
+    "@mantine/hooks": "^6.0.2",
+    "@mantine/tiptap": "^6.0.2",
+    "@tabler/icons-react": "^2.10.0",
+    "@tiptap/core": "2.0.0-beta.220",
+    "@tiptap/extension-link": "2.0.0-beta.220",
+    "@tiptap/pm": "2.0.0-beta.220",
+    "@tiptap/react": "2.0.0-beta.220",
+    "@tiptap/starter-kit": "2.0.0-beta.220",
+    "@types/node": "^18.15.3",
+    "@urql/exchange-graphcache": "^5.2.0",
+    "graphql": "^16.6.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-hook-form": "^7.43.5",
+    "react-router-dom": "^6.9.0",
+    "urql": "^3.0.4",
+    "usehooks-ts": "^2.9.1"
+  },
+  "devDependencies": {
+    "@graphql-codegen/cli": "^3.2.2",
+    "@graphql-codegen/client-preset": "^2.1.1",
+    "@types/react": "^18.0.28",
+    "@types/react-dom": "^18.0.11",
+    "@vitejs/plugin-react": "^3.1.0",
+    "@vitejs/plugin-react-swc": "^3.2.0",
+    "ts-node": "^10.9.1",
+    "typescript": "^4.9.5",
+    "vite": "^4.1.4"
+  }
+}
