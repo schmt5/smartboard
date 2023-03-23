@@ -7,12 +7,21 @@ export const BlockMutationDrawer = () => {
     const blockToMutate = useContext(BlockMutationContext);
     const dispatch = useContext(BlockMutationDispatchContext);
 
-    const onClose = () => {
+    const onClose = (scrollDown?: boolean) => {
         if (dispatch) {
             dispatch({
                 type: '',
                 payload: null,
             });
+        }
+
+        if (scrollDown) {
+            window.setTimeout(() => {
+                window.scrollBy({
+                    top: 120,
+                    behavior: 'smooth',
+                });
+            }, 500)
         }
     }
 

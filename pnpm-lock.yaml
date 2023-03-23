@@ -6,12 +6,14 @@ specifiers:
   '@emotion/react': ^11.10.6
   '@graphql-codegen/cli': ^3.2.2
   '@graphql-codegen/client-preset': ^2.1.1
+  '@graphql-typed-document-node/core': ^3.1.2
   '@mantine/core': ^6.0.2
   '@mantine/hooks': ^6.0.2
   '@mantine/tiptap': ^6.0.2
   '@tabler/icons-react': ^2.10.0
   '@tiptap/core': 2.0.0-beta.220
   '@tiptap/extension-link': 2.0.0-beta.220
+  '@tiptap/extension-placeholder': 2.0.0-beta.220
   '@tiptap/pm': 2.0.0-beta.220
   '@tiptap/react': 2.0.0-beta.220
   '@tiptap/starter-kit': 2.0.0-beta.220
@@ -36,12 +38,14 @@ dependencies:
   '@8base/auth': 1.6.2
   '@babel/core': 7.21.3
   '@emotion/react': 11.10.6_pmekkgnqduwlme35zpnqhenc34
+  '@graphql-typed-document-node/core': 3.1.2_graphql@16.6.0
   '@mantine/core': 6.0.2_md2nfwiomeeos7ogkicwnxcafa
   '@mantine/hooks': 6.0.2_react@18.2.0
   '@mantine/tiptap': 6.0.2_qs4lutqgkrtmk4zk6diozs6xte
   '@tabler/icons-react': 2.10.0_react@18.2.0
   '@tiptap/core': 2.0.0-beta.220_@tiptap+pm@2.0.0-beta.220
   '@tiptap/extension-link': 2.0.0-beta.220_ohumfzynigfck3hzagxvh2a4ky
+  '@tiptap/extension-placeholder': 2.0.0-beta.220_ohumfzynigfck3hzagxvh2a4ky
   '@tiptap/pm': 2.0.0-beta.220_7w7m52asdh3tod4ocz57yex63q
   '@tiptap/react': 2.0.0-beta.220_xig6hpp4glylmgjqbtp4uwsv5e
   '@tiptap/starter-kit': 2.0.0-beta.220_@tiptap+pm@2.0.0-beta.220
@@ -1652,7 +1656,6 @@ packages:
       graphql: ^0.8.0 || ^0.9.0 || ^0.10.0 || ^0.11.0 || ^0.12.0 || ^0.13.0 || ^14.0.0 || ^15.0.0 || ^16.0.0 || ^17.0.0
     dependencies:
       graphql: 16.6.0
-    dev: true
 
   /@jridgewell/gen-mapping/0.1.1:
     resolution: {integrity: sha512-sQXCasFk+U8lWYEe66WxRDOE9PjVz4vSM51fTu3Hw+ClTpUSQb718772vH3pyS5pShp6lvQM7SxgIDXXXmOX7w==}
@@ -2281,6 +2284,16 @@ packages:
       '@tiptap/core': ^2.0.0-beta.209
     dependencies:
       '@tiptap/core': 2.0.0-beta.220_@tiptap+pm@2.0.0-beta.220
+    dev: false
+
+  /@tiptap/extension-placeholder/2.0.0-beta.220_ohumfzynigfck3hzagxvh2a4ky:
+    resolution: {integrity: sha512-Pq79BH/JqhjTNgxHkmbzcmwATsSJdRRSLHrnLx5upSmwEkQwCzqni9jL10rL2NM1ZyR+o25xC+r5loujx0aQ+Q==}
+    peerDependencies:
+      '@tiptap/core': ^2.0.0-beta.209
+      '@tiptap/pm': ^2.0.0-beta.209
+    dependencies:
+      '@tiptap/core': 2.0.0-beta.220_@tiptap+pm@2.0.0-beta.220
+      '@tiptap/pm': 2.0.0-beta.220_7w7m52asdh3tod4ocz57yex63q
     dev: false
 
   /@tiptap/extension-strike/2.0.0-beta.220_7w7m52asdh3tod4ocz57yex63q:

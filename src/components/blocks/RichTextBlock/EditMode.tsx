@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'react';
-import { Box, createStyles, Divider } from '@mantine/core';
+import { createStyles, Divider } from '@mantine/core';
 import { RichTextEditor, Link } from '@mantine/tiptap';
 import { JSONContent, useEditor } from '@tiptap/react';
 import StarterKit from '@tiptap/starter-kit';
+import Placeholder from '@tiptap/extension-placeholder';
 import { useDebounce } from 'usehooks-ts';
 import { useMutation } from 'urql';
 import { BlockUpdateMutation } from '../../../urql/mutations/blockUpdateMutation';
@@ -14,8 +15,8 @@ const useStyles = createStyles((theme) => ({
         border: 'none',
     },
     toolbar: {
+        height: 44,
         padding: 8,
-        paddingRight: 32,
         gap: 8,
         borderColor: theme.colors.gray[8],
         opacity: 0,
@@ -52,6 +53,7 @@ export const EditMode = ({ hasFocus, id, editorContent, canStudentEdit }: Props)
         extensions: [
             Link,
             StarterKit,
+            Placeholder.configure({ placeholder: 'Inhalt...' })
         ],
         content: content,
         onUpdate: ({ editor }) => {
@@ -65,49 +67,45 @@ export const EditMode = ({ hasFocus, id, editorContent, canStudentEdit }: Props)
     }, [debouncedContent]);
 
     return (
-        <>
-            <Show when={hasFocus}>
-                <EditButton
-                    id={id}
-                    canStudentEdit={!!canStudentEdit}
-                />
-            </Show>
-            <RichTextEditor
-                editor={editor}
-                classNames={{
-                    root: classes.root,
-                    toolbar: cx(classes.toolbar, { [classes.toolbar_active]: hasFocus }),
-                    control: classes.control,
-                }}
-            >
-                <Box sx={{ height: 43 }}>
-                    <RichTextEditor.Toolbar sticky>
-                        <RichTextEditor.ControlsGroup>
-                            <RichTextEditor.H1 />
-                            <RichTextEditor.H2 />
-                            <RichTextEditor.H3 />
-                        </RichTextEditor.ControlsGroup>
-                        <Divider orientation="vertical" />
-                        <RichTextEditor.ControlsGroup>
-                            <RichTextEditor.Bold />
-                            <RichTextEditor.Italic />
-                            <RichTextEditor.Underline />
-                            <RichTextEditor.Code />
-                        </RichTextEditor.ControlsGroup>
-                        <Divider orientation="vertical" />
-                        <RichTextEditor.ControlsGroup>
-                            <RichTextEditor.BulletList />
-                            <RichTextEditor.OrderedList />
-                        </RichTextEditor.ControlsGroup>
-                        <Divider orientation="vertical" />
-                        <RichTextEditor.ControlsGroup>
-                            <RichTextEditor.Link />
-                            <RichTextEditor.Unlink />
-                        </RichTextEditor.ControlsGroup>
-                    </RichTextEditor.Toolbar>
-                </Box>
-                <RichTextEditor.Content />
-            </RichTextEditor>
-        </>
+        <RichTextEditor
+            editor={editor}
+            classNames={{
+                root: classes.root,
+                toolbar: cx(classes.toolbar, { [classes.toolbar_active]: hasFocus }),
+                control: classes.control,
+            }}
+        >
+            <RichTextEditor.Toolbar sticky>
+                <RichTextEditor.ControlsGroup>
+                    <RichTextEditor.H1 />
+                    <RichTextEditor.H2 />
+                    <RichTextEditor.H3 />
+                </RichTextEditor.ControlsGroup>
+                <Divider orientation="vertical" />
+                <RichTextEditor.ControlsGroup>
+                    <RichTextEditor.Bold />
+                    <RichTextEditor.Italic />
+                    <RichTextEditor.Underline />
+                    <RichTextEditor.Code />
+                </RichTextEditor.ControlsGroup>
+                <Divider orientation="vertical" />
+                <RichTextEditor.ControlsGroup>
+                    <RichTextEditor.BulletList />
+                    <RichTextEditor.OrderedList />
+                </RichTextEditor.ControlsGroup>
+                <Divider orientation="vertical" />
+                <RichTextEditor.ControlsGroup>
+                    <RichTextEditor.Link />
+                    <RichTextEditor.Unlink />
+                </RichTextEditor.ControlsGroup>
+                <Show when={hasFocus}>
+                    <EditButton
+                        id={id}
+                        canStudentEdit={!!canStudentEdit}
+                    />
+                </Show>
+            </RichTextEditor.Toolbar>
+            <RichTextEditor.Content />
+        </RichTextEditor>
     );
 };

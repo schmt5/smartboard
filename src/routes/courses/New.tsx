@@ -1,7 +1,8 @@
 import { Button, Container, Flex, Textarea, TextInput, Title } from "@mantine/core";
-import { SubmitHandler, useForm } from "react-hook-form";
+import { Controller, SubmitHandler, useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 import { useMutation } from "urql";
+import { RichText } from "../../components/RichTextEditor";
 import { CourseCreateMutation } from "../../urql/mutations/courseCreateMutation";
 import { PageCreateMutation } from "../../urql/mutations/pageCreateMutation";
 
@@ -14,7 +15,7 @@ export default function New() {
     const navigate = useNavigate();
     const [{ fetching: fetchingCourse }, createCourse] = useMutation(CourseCreateMutation);
     const [{ fetching: fetchingPage }, createPage] = useMutation(PageCreateMutation);
-    const { register, handleSubmit, formState: { errors } } = useForm<FormValues>({
+    const { register, handleSubmit, control, formState: { errors } } = useForm<FormValues>({
         defaultValues: {
             name: '',
             description: '',
@@ -43,14 +44,23 @@ export default function New() {
                     placeholder="Mathematik"
                     error={errors.name?.message}
                     withAsterisk
+                    size={'md'}
+                    mb={'xl'}
                 />
-                <Textarea
-                    {...register('description')}
-                    label="Beschreibung"
-                    placeholder="Beschreibe deinen Kurs"
-                    mt={'lg'}
+                <Controller
+                    name="description"
+                    control={control}
+                    render={({ field: { onChange, onBlur, value } }) => (
+                        <RichText
+                            label="Beschreibung"
+                            value={value}
+                            onChange={onChange}
+                            onBlur={onBlur}
+                        />
+                    )}
                 />
-                <Flex justify={'flex-end'} align={'center'} gap={'md'} mt={'lg'}>
+
+                <Flex justify={'flex-end'} align={'center'} gap={'md'} mt={'xl'}>
                     <Button
                         variant="subtle"
                         component={Link}

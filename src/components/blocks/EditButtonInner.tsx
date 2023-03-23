@@ -7,12 +7,7 @@ interface Props {
 
 export const EditButtonInner = ({ handleClick }: Props) => {
     return (
-        <Box sx={{
-            position: 'absolute',
-            top: 6,
-            right: 6,
-            zIndex: 10,
-        }}>
+        <Box sx={{ marginLeft: 'auto' }}>
             <ActionIcon
                 variant={'subtle'}
                 onClick={handleClick}

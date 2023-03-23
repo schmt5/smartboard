@@ -27,7 +27,6 @@ export const EditableBlockWrapper = ({ children }: Props) => {
             onClick={handleClickInside}
             mb={'md'}
             sx={(theme) => ({
-                position: 'relative',
                 border: '2px solid',
                 borderRadius: theme.radius.sm,
                 borderColor: hasFocus ? theme.colors.gray[8] : 'transparent',

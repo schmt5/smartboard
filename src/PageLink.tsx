@@ -52,31 +52,35 @@ export const PageLink = ({ id, name, isSidebarOpen }: PageLinkProps) => {
     const { courseId, pageId: currentPageId } = useParams();
     const { classes, cx } = useStyles();
 
-    const IconLink = <Tooltip
-        label={name}
-        position="right"
-    >
+    const iconLink = (
+        <Tooltip
+            label={name}
+            position="right"
+        >
+            <Link
+                to={`/courses/${courseId}/pages/${id}`}
+                className={cx(classes.link, { [classes.linkActive]: id === currentPageId })}
+            >
+                <IconFile className={classes.linkIcon} />
+            </Link>
+        </Tooltip>
+    );
+
+    const textLink = (
         <Link
             to={`/courses/${courseId}/pages/${id}`}
             className={cx(classes.link, { [classes.linkActive]: id === currentPageId })}
         >
             <IconFile className={classes.linkIcon} />
+            <Text sx={{ whiteSpace: 'nowrap' }}>
+                {name}
+            </Text>
         </Link>
-    </Tooltip>
-
-    const TextLink = <Link
-        to={`/courses/${courseId}/pages/${id}`}
-        className={cx(classes.link, { [classes.linkActive]: id === currentPageId })}
-    >
-        <IconFile className={classes.linkIcon} />
-        <Text sx={{ whiteSpace: 'nowrap' }}>
-            {name}
-        </Text>
-    </Link>
+    )
 
     return (
         <>
-            {isSidebarOpen ? TextLink : IconLink}
+            {isSidebarOpen ? textLink : iconLink}
         </>
     );
 };

@@ -8,7 +8,7 @@ export const PageHeader = () => {
     const [{ data }] = useQuery({ query: PageByIdQuery, variables: { id: pageId! } })
 
     return (
-        <Title order={2} mb={'lg'}>
+        <Title order={1} mb={'lg'} ml={'md'}>
             {data?.page?.name}
         </Title>
     );

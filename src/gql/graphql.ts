@@ -1207,8 +1207,7 @@ export type Course = {
   createdAt?: Maybe<Scalars['DateTime']>;
   createdBy?: Maybe<User>;
   deletedAt?: Maybe<Scalars['Int']>;
-  /** Description of the Course */
-  description?: Maybe<Scalars['String']>;
+  description?: Maybe<Scalars['JSON']>;
   id?: Maybe<Scalars['ID']>;
   /** Name of the Course */
   name?: Maybe<Scalars['String']>;
@@ -1231,8 +1230,7 @@ export type CoursePagesArgs = {
 
 /** Courses create input */
 export type CourseCreateInput = {
-  /** Description of the Course */
-  description?: InputMaybe<Scalars['String']>;
+  description?: InputMaybe<Scalars['JSON']>;
   /** Name of the Course */
   name?: InputMaybe<Scalars['String']>;
   pages?: InputMaybe<CoursesPagesRelationInput>;
@@ -1240,8 +1238,7 @@ export type CourseCreateInput = {
 
 /** Courses create many input */
 export type CourseCreateManyInput = {
-  /** Description of the Course */
-  description?: InputMaybe<Scalars['String']>;
+  description?: InputMaybe<Scalars['JSON']>;
   /** Name of the Course */
   name?: InputMaybe<Scalars['String']>;
   pages?: InputMaybe<CoursesPagesManyRelationInput>;
@@ -1268,7 +1265,6 @@ export type CourseFilter = {
   createdAt?: InputMaybe<DateTimePredicate>;
   createdBy?: InputMaybe<UserFilter>;
   deletedAt?: InputMaybe<IntPredicate>;
-  description?: InputMaybe<StringPredicate>;
   id?: InputMaybe<IdPredicate>;
   name?: InputMaybe<StringPredicate>;
   pages?: InputMaybe<PageRelationFilter>;
@@ -1348,7 +1344,6 @@ export type CourseSort = {
   createdAt?: InputMaybe<SortOrder>;
   createdBy?: InputMaybe<UserSort>;
   deletedAt?: InputMaybe<SortOrder>;
-  description?: InputMaybe<SortOrder>;
   id?: InputMaybe<SortOrder>;
   name?: InputMaybe<SortOrder>;
   updatedAt?: InputMaybe<SortOrder>;
@@ -1363,14 +1358,13 @@ export type CourseSubscriptionFilter = {
 
 /** Courses update input */
 export type CourseUpdateByFilterInput = {
-  description?: InputMaybe<Array<InputMaybe<UpdateByFilterStringInput>>>;
+  description?: InputMaybe<Array<InputMaybe<UpdateByFilterJsonInput>>>;
   name?: InputMaybe<Array<InputMaybe<UpdateByFilterStringInput>>>;
 };
 
 /** Courses update input */
 export type CourseUpdateInput = {
-  /** Description of the Course */
-  description?: InputMaybe<Scalars['String']>;
+  description?: InputMaybe<Scalars['JSON']>;
   id?: InputMaybe<Scalars['ID']>;
   /** Name of the Course */
   name?: InputMaybe<Scalars['String']>;
@@ -1384,7 +1378,6 @@ export type Course_PermissionFilter = {
   createdAt?: InputMaybe<DateTimePredicate>;
   createdBy?: InputMaybe<User_PermissionFilter>;
   deletedAt?: InputMaybe<IntPredicate>;
-  description?: InputMaybe<StringPredicate>;
   id?: InputMaybe<IdPredicate>;
   name?: InputMaybe<StringPredicate>;
   pages?: InputMaybe<Page_PermissionRelationFilter>;
@@ -3807,8 +3800,7 @@ export type Pages_BlockUpdateInput = {
 
 /** Courses create input from pages */
 export type Pages_CourseCreateInput = {
-  /** Description of the Course */
-  description?: InputMaybe<Scalars['String']>;
+  description?: InputMaybe<Scalars['JSON']>;
   /** Name of the Course */
   name?: InputMaybe<Scalars['String']>;
   pages?: InputMaybe<CoursesPagesRelationInput>;
@@ -3816,8 +3808,7 @@ export type Pages_CourseCreateInput = {
 
 /** Courses update input from pages */
 export type Pages_CourseUpdateInput = {
-  /** Description of the Course */
-  description?: InputMaybe<Scalars['String']>;
+  description?: InputMaybe<Scalars['JSON']>;
   /** Name of the Course */
   name?: InputMaybe<Scalars['String']>;
   pages?: InputMaybe<CoursesPagesUpdateRelationInput>;
@@ -8630,7 +8621,7 @@ export type CourseByIdQueryQueryVariables = Exact<{
 }>;
 
 
-export type CourseByIdQueryQuery = { __typename?: 'Query', course?: { __typename?: 'Course', id?: string | null, name?: string | null, description?: string | null, pages?: { __typename?: 'PageListResponse', count: number, items: Array<{ __typename?: 'Page', id?: string | null, name?: string | null }> } | null } | null };
+export type CourseByIdQueryQuery = { __typename?: 'Query', course?: { __typename?: 'Course', id?: string | null, name?: string | null, description?: any | null, pages?: { __typename?: 'PageListResponse', count: number, items: Array<{ __typename?: 'Page', id?: string | null, name?: string | null }> } | null } | null };
 
 export type CoursesQueryQueryVariables = Exact<{ [key: string]: never; }>;
 

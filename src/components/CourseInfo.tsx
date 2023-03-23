@@ -2,22 +2,27 @@ import { Box, Button, Grid, Text, Title } from "@mantine/core";
 import { Link, useParams } from "react-router-dom";
 import { useQuery } from "urql";
 import { CourseByIdQuery } from "../urql/queries/courseByIdQuery";
+import { ReadableRichText } from "./ReadableRichText";
+import { RichText } from "./RichTextEditor";
 
 export const CourseInfo = () => {
     const { courseId } = useParams();
-    const [{ data }] = useQuery({ query: CourseByIdQuery, variables: { id: courseId } })
+    const [{ data }] = useQuery({ query: CourseByIdQuery, variables: { id: courseId! } })
 
     return (
         <>
             <Box maw={720}>
-                <Title order={2}>Kursinfos</Title>
+                <Title order={1}>
+                    {data?.course?.name}
+                </Title>
+                <ReadableRichText value={data?.course?.description} />
                 <Grid mt={'sm'} mb={'lg'}>
                     <Grid.Col span={3}>
                         <Text weight={700} color="dimmed">Kurstitel</Text>
                     </Grid.Col>
                     <Grid.Col span={9}>
                         <Text>
-                            {data?.course.name}
+                            {data?.course?.name}
                         </Text>
                     </Grid.Col>
                     <Grid.Col span={3}>
@@ -25,7 +30,7 @@ export const CourseInfo = () => {
                     </Grid.Col>
                     <Grid.Col span={9}>
                         <Text>
-                            {data?.course.description}
+                            {data?.course?.description}
                         </Text>
                     </Grid.Col>
                 </Grid>
@@ -33,7 +38,7 @@ export const CourseInfo = () => {
                     variant="filled"
                     component={Link}
                     to={`/courses/${courseId}/edit`}
-                    state={{ id: data?.course.id, name: data?.course.name, description: data?.course.description }}
+                    state={{ id: data?.course?.id, name: data?.course?.name, description: data?.course?.description }}
                 >
                     Editieren
                 </Button>

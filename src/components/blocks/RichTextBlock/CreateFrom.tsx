@@ -10,7 +10,7 @@ type FormValues = {
 }
 
 interface Props {
-    onClose: () => void;
+    onClose: (scrollDown?: boolean) => void;
 }
 
 export const CreateForm = ({ onClose }: Props) => {
@@ -27,8 +27,7 @@ export const CreateForm = ({ onClose }: Props) => {
         const blockData = { data: { pagesId: pageId, position: blocksData?.blocksList.count, ...data } }
         const newBlock = await createBlock(blockData);
         if (!newBlock.data) return;
-
-        onClose();
+        onClose(true);
     }
 
     return (

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { ActionIcon, Box, Button, Center, Flex, Text, Tooltip, Transition } from "@mantine/core";
+import { ActionIcon, Box, Button, Center, Flex, Text, Tooltip } from "@mantine/core";
 import { IconPlus } from "@tabler/icons-react";
 import { CreatePageDrawer } from "./CreatePageDrawer";
 
@@ -14,50 +14,42 @@ export const PageNavCreate = ({ isSidebarOpen, pageCount }: PageNavCreateProps) 
     const onOpen = () => setOpenDrawer(true);
     const onClose = () => setOpenDrawer(false);
 
+    const iconLink = (
+        <Tooltip
+            label={'Seite hinzufügen'}
+            position="right"
+        >
+            <Center>
+                <ActionIcon
+                    color={'dark'}
+                    size={'lg'}
+                    onClick={onOpen}
+                >
+                    <IconPlus />
+                </ActionIcon>
+            </Center>
+        </Tooltip>
+    );
 
-    if (!isSidebarOpen) {
-        return (
-            <>
-                <Box mt={'lg'}>
-                    <Tooltip
-                        label={'Seite hinzufügen'}
-                        position="right"
-                    >
-                        <Center>
-                            <ActionIcon
-                                color={'dark'}
-                                size={'lg'}
-                                onClick={onOpen}
-                            >
-                                <IconPlus />
-                            </ActionIcon>
-                        </Center>
-                    </Tooltip>
-                </Box>
-                <CreatePageDrawer
-                    open={openDrawer}
-                    onClose={onClose}
-                    pageCount={pageCount}
-                />
-            </>
-        );
-    }
+    const textLink = (
+        <Flex justify={'flex-start'}>
+            <Button
+                variant={'subtle'}
+                color={'dark'}
+                leftIcon={<IconPlus size={20} />}
+                onClick={onOpen}
+            >
+                <Text sx={{ whiteSpace: 'nowrap' }}>
+                    Seite hinzufügen
+                </Text>
+            </Button>
+        </Flex>
+    );
 
     return (
         <>
             <Box mt={'lg'}>
-                <Flex justify={'flex-start'}>
-                    <Button
-                        variant={'subtle'}
-                        color={'dark'}
-                        leftIcon={<IconPlus size={20} />}
-                        onClick={onOpen}
-                    >
-                        <Text sx={{ whiteSpace: 'nowrap' }}>
-                            Seite hinzufügen
-                        </Text>
-                    </Button>
-                </Flex>
+                {isSidebarOpen ? textLink : iconLink}
             </Box>
             <CreatePageDrawer
                 open={openDrawer}

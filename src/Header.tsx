@@ -60,7 +60,7 @@ export const Header = () => {
                         size={'lg'}
                         weight={600}
                     >
-                        SmartLab
+                        SmartBoard
                     </Text>
                     <Menu
                         width={260}

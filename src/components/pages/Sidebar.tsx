@@ -1,4 +1,4 @@
-import { Box, Paper } from "@mantine/core";
+import { Box, createStyles, Paper } from "@mantine/core";
 import { useParams } from "react-router-dom";
 import { useQuery } from "urql";
 import { useLocalStorage } from "usehooks-ts";
@@ -7,7 +7,24 @@ import { PageNavCreate } from "./PageNavCreate";
 import { PageNavToggle } from "./PageNavToggle";
 import { PagesByCourseQuery } from "../../urql/queries/pagesByCourseQuery";
 
+const useStyle = createStyles(() => ({
+    sidebar: {
+        flexBasis: 74,
+        transition: 'flex-basis 0.34s ease-out',
+        height: 'calc(100vh - 106px)',
+        borderTop: 0,
+        borderBottom: 0,
+        overflow: 'hidden',
+
+        '&[data-open="true"]': {
+            flexBasis: 340,
+            transitionTimingFunction: 'ease-in',
+        }
+    }
+}))
+
 export const Sidebar = () => {
+    const { classes } = useStyle();
     const { courseId } = useParams();
     const [open, setOpen] = useLocalStorage('sidebarOpen', true);
     const [{ data }] = useQuery({ query: PagesByCourseQuery, variables: { courseId: courseId! } });
@@ -16,10 +33,11 @@ export const Sidebar = () => {
 
     return (
         <Paper
-            sx={{ flexBasis: open ? 300 : 68, height: 'calc(100vh - 106px)', transition: 'flex-basis 0.3s ease-in-out', borderTop: 0, borderBottom: 0 }}
+            className={classes.sidebar}
+            data-open={open}
             radius={0}
             withBorder
-            p={'md'}
+            p={'sm'}
         >
             <PageNavToggle
                 open={open}
